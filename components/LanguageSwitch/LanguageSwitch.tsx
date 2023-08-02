@@ -25,7 +25,7 @@ export const LanguageSwitch = () => {
 	const segments = useSelectedLayoutSegments();
 
 	const getQueryString = useCallback(() => {
-		const params = new URLSearchParams(searchParams);
+		const params = new URLSearchParams(searchParams.toString());
 		const res = "?" + params.toString();
 
 		return res.length === 1 ? "" : res;
