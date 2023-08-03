@@ -287,82 +287,66 @@ module.exports = {
         },
         'orbit-1': {
           '0%': {
-            transform:
-              'rotate(-0deg) translateX(var(--orbit-radius)) rotate(0deg)',
+            transform: 'rotate(-0deg) translateX(var(--orbit-radius)) rotate(0deg)',
           },
           '100%': {
-            transform:
-              'rotate(-360deg) translateX(var(--orbit-radius)) rotate(360deg)',
+            transform: 'rotate(-360deg) translateX(var(--orbit-radius)) rotate(360deg)',
           },
         },
         'orbit-2': {
           '0%': {
-            transform:
-              'rotate(-45deg) translateX(var(--orbit-radius)) rotate(45deg)',
+            transform: 'rotate(-45deg) translateX(var(--orbit-radius)) rotate(45deg)',
           },
           '100%': {
-            transform:
-              'rotate(-405deg) translateX(var(--orbit-radius)) rotate(405deg)',
+            transform: 'rotate(-405deg) translateX(var(--orbit-radius)) rotate(405deg)',
           },
         },
         'orbit-3': {
           '0%': {
-            transform:
-              'rotate(-90deg) translateX(var(--orbit-radius)) rotate(90deg)',
+            transform: 'rotate(-90deg) translateX(var(--orbit-radius)) rotate(90deg)',
           },
           '100%': {
-            transform:
-              'rotate(-450deg) translateX(var(--orbit-radius)) rotate(450deg)',
+            transform: 'rotate(-450deg) translateX(var(--orbit-radius)) rotate(450deg)',
           },
         },
         'orbit-4': {
           '0%': {
-            transform:
-              'rotate(-135deg) translateX(var(--orbit-radius)) rotate(135deg)',
+            transform: 'rotate(-135deg) translateX(var(--orbit-radius)) rotate(135deg)',
           },
           '100%': {
-            transform:
-              'rotate(-495deg) translateX(var(--orbit-radius)) rotate(495deg)',
+            transform: 'rotate(-495deg) translateX(var(--orbit-radius)) rotate(495deg)',
           },
         },
         'orbit-5': {
           '0%': {
-            transform:
-              'rotate(-180deg) translateX(var(--orbit-radius)) rotate(180deg)',
+            transform: 'rotate(-180deg) translateX(var(--orbit-radius)) rotate(180deg)',
           },
           '100%': {
-            transform:
-              'rotate(-540deg) translateX(var(--orbit-radius)) rotate(540deg)',
+            transform: 'rotate(-540deg) translateX(var(--orbit-radius)) rotate(540deg)',
           },
         },
         'orbit-6': {
           '0%': {
-            transform:
-              'rotate(-225deg) translateX(var(--orbit-radius)) rotate(225deg)',
+            transform: 'rotate(-225deg) translateX(var(--orbit-radius)) rotate(225deg)',
           },
           '100%': {
-            transform:
-              'rotate(-585deg) translateX(var(--orbit-radius)) rotate(585deg)',
+            transform: 'rotate(-585deg) translateX(var(--orbit-radius)) rotate(585deg)',
           },
         },
         'orbit-7': {
           '0%': {
-            transform:
-              'rotate(-270deg) translateX(var(--orbit-radius)) rotate(270deg)',
+            transform: 'rotate(-270deg) translateX(var(--orbit-radius)) rotate(270deg)',
           },
           '100%': {
-            transform:
-              'rotate(-630deg) translateX(var(--orbit-radius)) rotate(630deg)',
+            transform: 'rotate(-630deg) translateX(var(--orbit-radius)) rotate(630deg)',
           },
         },
         'orbit-8': {
           '0%': {
-            transform:
-              'rotate(-315deg) translateX(var(--orbit-radius)) rotate(315deg)',
+            transform: 'rotate(-315deg) translateX(var(--orbit-radius)) rotate(315deg)',
           },
           '100%': {
-            transform:
-              'rotate(-675deg) translateX(var(--orbit-radius)) rotate(675deg)',
+            transform: 'rotate(-675deg) translateX(var(--orbit-radius)) rotate(675deg)',
           },
         },
       },

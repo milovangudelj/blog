@@ -1,11 +1,7 @@
 'use client'
 
 import { useCallback } from 'react'
-import {
-  usePathname,
-  useSearchParams,
-  useSelectedLayoutSegments,
-} from 'next/navigation'
+import { usePathname, useSearchParams, useSelectedLayoutSegments } from 'next/navigation'
 import Link from 'next/link'
 import { GlobeSimple } from '@phosphor-icons/react'
 
@@ -62,12 +58,8 @@ export const LanguageSwitch = () => {
         getCurrentLocale() !== locale.value ? (
           <Link
             key={locale.value}
-            href={
-              `/${locale.value}` + cleanPathname(pathname) + getQueryString()
-            }
-            title={
-              locale.value === 'it' ? "Passa all'Italiano" : 'Switch to English'
-            }
+            href={`/${locale.value}` + cleanPathname(pathname) + getQueryString()}
+            title={locale.value === 'it' ? "Passa all'Italiano" : 'Switch to English'}
             className={`relative inline-flex items-center gap-1 px-4 py-2 text-button opacity-60 transition hover:opacity-100`}
           >
             <span>{locale.label}</span>

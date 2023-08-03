@@ -1,13 +1,7 @@
-import {
-  ComponentPropsWithoutRef,
-  ElementType,
-  HTMLAttributes,
-  ReactNode,
-} from 'react'
+import { ComponentPropsWithoutRef, ElementType, HTMLAttributes, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-export interface ContainerProps<T extends ElementType>
-  extends HTMLAttributes<T> {
+export interface ContainerProps<T extends ElementType> extends HTMLAttributes<T> {
   as?: T
 }
 
@@ -16,8 +10,7 @@ export const Container = <T extends ElementType = 'div'>({
   as,
   className,
   ...props
-}: ContainerProps<T> &
-  Omit<ComponentPropsWithoutRef<T>, keyof ContainerProps<T>>) => {
+}: ContainerProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof ContainerProps<T>>) => {
   const Component = as || 'div'
 
   return (

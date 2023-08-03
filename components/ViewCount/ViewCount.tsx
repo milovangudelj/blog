@@ -8,10 +8,7 @@ import fetcher from '~/lib/fetcher'
 import { ViewCountSkeleton } from '~components/ViewCount/ViewCountSkeleton'
 
 export const ViewCount = ({ message }: { message: string }) => {
-  const { data, isLoading } = useSWR<{ count: number; error?: string }>(
-    '/api/viewCount',
-    fetcher
-  )
+  const { data, isLoading } = useSWR<{ count: number; error?: string }>('/api/viewCount', fetcher)
 
   if (isLoading) return <ViewCountSkeleton />
 

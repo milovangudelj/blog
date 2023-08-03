@@ -46,10 +46,7 @@ export default async function NotFound() {
   const dictionary = await getDictionary(lang)
 
   return (
-    <html
-      lang={lang}
-      className={`${inter.variable} ${spaceGrotesk.variable} bg-black text-white`}
-    >
+    <html lang={lang} className={`${inter.variable} ${spaceGrotesk.variable} bg-black text-white`}>
       <body>
         <div className="min-h-[100dvh] bg-black bg-noise bg-repeat [background-size:100px]">
           <Navbar lang={lang} links={links[lang]} />

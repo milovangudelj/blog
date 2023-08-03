@@ -10,9 +10,7 @@ export default async function PostsPage() {
     <>
       <Section>
         <Container>
-          <h1 className="mb-16 text-h1-mobile md:text-d1-mobile 2xl:text-d1">
-            Latest posts
-          </h1>
+          <h1 className="mb-16 text-h1-mobile md:text-d1-mobile 2xl:text-d1">Latest posts</h1>
           <ol className="flex justify-between">
             {posts.slice(0, 3).map((post) => (
               <li key={post.slug}>
@@ -63,11 +61,10 @@ export default async function PostsPage() {
                     {post.views} views
                   </span>
                   <p className="mt-8 line-clamp-3 text-light-me">
-                    Lorem ipsum is placeholder text commonly used in the
-                    graphic, print, and publishing industries for previewing
-                    layouts and visual mockups. Lorem ipsum is placeholder text
-                    commonly used in the graphic, print, and publishing
-                    industries for previewing layouts and visual mockups.
+                    Lorem ipsum is placeholder text commonly used in the graphic, print, and
+                    publishing industries for previewing layouts and visual mockups. Lorem ipsum is
+                    placeholder text commonly used in the graphic, print, and publishing industries
+                    for previewing layouts and visual mockups.
                   </p>
                 </div>
                 <Image

@@ -46,15 +46,11 @@ export async function getProjectBySlug({
   return await client.fetch(projectBySlugQuery, { slug, lang })
 }
 
-export async function getProjects(
-  lang: Locale = 'en'
-): Promise<ProjectPayload[]> {
+export async function getProjects(lang: Locale = 'en'): Promise<ProjectPayload[]> {
   return await client.fetch(projectsQuery, { lang })
 }
 
-export async function getSlimProjects(
-  lang: Locale = 'en'
-): Promise<SlimProjectPayload[]> {
+export async function getSlimProjects(lang: Locale = 'en'): Promise<SlimProjectPayload[]> {
   return await client.fetch(slimProjectsQuery, { lang })
 }
 

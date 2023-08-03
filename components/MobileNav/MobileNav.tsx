@@ -60,20 +60,13 @@ export const MobileNav = ({
 
   return (
     <div className="md:pointer-events-none md:invisible md:hidden md:select-none">
-      <div
-        onClick={toggleMenu}
-        className="relative z-10 space-y-1.5 p-4 md:hidden"
-      >
+      <div onClick={toggleMenu} className="relative z-10 space-y-1.5 p-4 md:hidden">
         <span
           className={`block h-0.5 w-8 origin-center bg-current transition-all will-change-transform ${
             menuOpen ? 'translate-y-2 rotate-45' : 'transform'
           }`}
         ></span>
-        <span
-          className={`block h-0.5 w-8 bg-current transition ${
-            menuOpen && 'opacity-0'
-          }`}
-        ></span>
+        <span className={`block h-0.5 w-8 bg-current transition ${menuOpen && 'opacity-0'}`}></span>
         <span
           className={`block h-0.5 w-8 origin-center bg-current transition-all will-change-transform ${
             menuOpen ? '-translate-y-2 -rotate-45' : 'transform'

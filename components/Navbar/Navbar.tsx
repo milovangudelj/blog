@@ -1,23 +1,13 @@
 'use client'
 
-import {
-  ComponentProps,
-  RefCallback,
-  Suspense,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react'
+import { ComponentProps, RefCallback, Suspense, useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 
 import { Locale } from '~/i18n.config'
 
 import { MobileNav } from '~components/MobileNav'
 import { NavLinks } from '~components/NavLinks'
-import {
-  LanguageSwitch,
-  LanguageSwitchFallback,
-} from '~components/LanguageSwitch'
+import { LanguageSwitch, LanguageSwitchFallback } from '~components/LanguageSwitch'
 import { SiteNavigationPayload } from '~/sanity/types'
 
 export const Navbar = ({
@@ -32,10 +22,7 @@ export const Navbar = ({
   useEffect(() => {
     if (!rect || !rect.height) return
 
-    document.documentElement.style.setProperty(
-      '--nav-height',
-      `${rect.height}px`
-    )
+    document.documentElement.style.setProperty('--nav-height', `${rect.height}px`)
   }, [rect])
 
   return (
@@ -67,10 +54,7 @@ export const Navbar = ({
   )
 }
 
-function useClientRect(): [
-  DOMRect | undefined,
-  (instance: HTMLElement | null) => void,
-] {
+function useClientRect(): [DOMRect | undefined, (instance: HTMLElement | null) => void] {
   const [rect, setRect] = useState<DOMRect>()
 
   const ref: RefCallback<HTMLElement> = useCallback((node) => {

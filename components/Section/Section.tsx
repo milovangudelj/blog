@@ -1,10 +1,7 @@
 import { ComponentProps, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-export const Section = ({
-  children,
-  className = '',
-}: ComponentProps<'section'>) => {
+export const Section = ({ children, className = '' }: ComponentProps<'section'>) => {
   return (
     <section
       className={twMerge(

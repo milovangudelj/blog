@@ -27,8 +27,7 @@ const spaceGrotesk = localFont({
 
 export const metadata = {
   title: 'Milovan Gudelj - Web developer / UI designer',
-  description:
-    'I design and develop engaging websites and delightful digital experiences.',
+  description: 'I design and develop engaging websites and delightful digital experiences.',
   metadataBase: new URL('https://www.milovangudelj.com'),
   alternates: {
     canonical: '/en',
@@ -101,10 +100,7 @@ export default async function RootLayout({
   }
 }) {
   return (
-    <html
-      lang={params.lang}
-      className={`${inter.variable} ${spaceGrotesk.variable}`}
-    >
+    <html lang={params.lang} className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="relative min-h-screen scroll-smooth bg-black font-sans text-white before:pointer-events-none before:absolute before:inset-0 before:block before:bg-noise before:bg-repeat before:[background-size:100px]">
         <Navbar lang={params.lang} links={links[params.lang]} />
         <div className="relative before:pointer-events-none before:absolute before:inset-0 before:z-10 before:mx-auto before:w-[calc(100%-64px)] before:border-x before:border-white/[0.06] before:md:max-w-7xl">

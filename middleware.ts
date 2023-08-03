@@ -15,9 +15,7 @@ function getLocale(request: NextRequest): string | undefined {
   const locales: string[] = i18n.locales
 
   // Use negotiator and intl-localematcher to get best locale
-  let languages = new Negotiator({ headers: negotiatorHeaders }).languages(
-    locales
-  )
+  let languages = new Negotiator({ headers: negotiatorHeaders }).languages(locales)
 
   const locale = matchLocale(languages, locales, i18n.defaultLocale)
 
@@ -42,8 +40,7 @@ export const middleware = async (request: NextRequest) => {
   // If you have one
   if (
     ['/fonts', '/images'].some(
-      (value) =>
-        pathname.startsWith(value) || pathname.localeCompare(value) === 0
+      (value) => pathname.startsWith(value) || pathname.localeCompare(value) === 0
     )
   ) {
     return NextResponse.next()
@@ -53,10 +50,7 @@ export const middleware = async (request: NextRequest) => {
   reqHeaders.set('x-mg-locale', locale)
 
   // Check if the default locale is in the pathname
-  if (
-    pathname.startsWith(`/${i18n.defaultLocale}/`) ||
-    pathname === `/${i18n.defaultLocale}`
-  ) {
+  if (pathname.startsWith(`/${i18n.defaultLocale}/`) || pathname === `/${i18n.defaultLocale}`) {
     // e.g. incoming request is /en/products
     // The new URL is now /products
     return NextResponse.redirect(
@@ -83,21 +77,15 @@ export const middleware = async (request: NextRequest) => {
     // e.g. incoming request is /products
     // The new URL is now /en-US/products
     if (locale === i18n.defaultLocale) {
-      return NextResponse.rewrite(
-        new URL(`/${locale}${pathname}`, request.url),
-        {
-          headers: reqHeaders,
-        }
-      )
+      return NextResponse.rewrite(new URL(`/${locale}${pathname}`, request.url), {
+        headers: reqHeaders,
+      })
     }
 
     reqHeaders.set('x-mg-locale', 'it')
-    return NextResponse.redirect(
-      new URL(`/${locale}${pathname}`, request.url),
-      {
-        headers: reqHeaders,
-      }
-    )
+    return NextResponse.redirect(new URL(`/${locale}${pathname}`, request.url), {
+      headers: reqHeaders,
+    })
   }
 
   reqHeaders.set('x-mg-locale', 'it')
@@ -110,7 +98,5 @@ export const middleware = async (request: NextRequest) => {
 
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
-  matcher: [
-    '/((?!api|studio|robots.txt|_next/static|_next/image|images|fonts).*)',
-  ],
+  matcher: ['/((?!api|studio|robots.txt|_next/static|_next/image|images|fonts).*)'],
 }
