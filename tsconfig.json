@@ -20,20 +20,20 @@
       }
     ],
     "paths": {
-			"~/*": ["./*"],
-			"~components": ["./components"],
-			"~components/*": ["./components/*"],
-			"~lib": ["./lib"],
-			"~lib/*": ["./lib/*"],
-			"~utils": ["./utils"],
-			"~utils/*": ["./utils/*"],
-			"~types": ["./types"],
-			"~types/*": ["./types/*"],
-			"~styles": ["./styles"],
-			"~styles/*": ["./styles/*"],
-			"~images": ["./public/images"],
-			"~images/*": ["./public/images/*"]
-		}
+      "~/*": ["./*"],
+      "~components": ["./components"],
+      "~components/*": ["./components/*"],
+      "~lib": ["./lib"],
+      "~lib/*": ["./lib/*"],
+      "~utils": ["./utils"],
+      "~utils/*": ["./utils/*"],
+      "~types": ["./types"],
+      "~types/*": ["./types/*"],
+      "~styles": ["./styles"],
+      "~styles/*": ["./styles/*"],
+      "~images": ["./public/images"],
+      "~images/*": ["./public/images/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

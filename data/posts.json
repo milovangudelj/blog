@@ -1,0 +1,38 @@
+[
+  {
+    "title": "My first post",
+    "slug": "my-first-post",
+    "image": "/images/icedcoffee.webp",
+    "views": 45
+  },
+  {
+    "title": "My second post",
+    "slug": "my-second-post",
+    "image": "/images/icedcoffee.webp",
+    "views": 45
+  },
+  {
+    "title": "My third post",
+    "slug": "my-third-post",
+    "image": "/images/icedcoffee.webp",
+    "views": 45
+  },
+  {
+    "title": "My fourth post",
+    "slug": "my-fourth-post",
+    "image": "/images/icedcoffee.webp",
+    "views": 45
+  },
+  {
+    "title": "My fifth post",
+    "slug": "my-fifth-post",
+    "image": "/images/icedcoffee.webp",
+    "views": 45
+  },
+  {
+    "title": "My sixth post",
+    "slug": "my-sixth-post",
+    "image": "/images/icedcoffee.webp",
+    "views": 45
+  }
+]
