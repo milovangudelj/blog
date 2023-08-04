@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { Container, Section } from '~/components'
 import { Locale } from '~/i18n.config'
 
 import { getPostBySlug, getPostPaths } from '~/sanity/lib/client'
@@ -45,5 +46,11 @@ export default async function PostPage({
 }) {
   const { title } = await getPostBySlug({ slug, lang })
 
-  return <h1>{title}</h1>
+  return (
+    <Section>
+      <Container>
+        <h1>{title}</h1>
+      </Container>
+    </Section>
+  )
 }
