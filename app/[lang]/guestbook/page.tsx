@@ -1,3 +1,12 @@
+import { Container } from '~/components/Container'
+import { Section } from '~/components/Section'
+
 export default function GuestbookPage() {
-  return <h1>Guestbook</h1>
+  return (
+    <Section>
+      <Container>
+        <h1>Guestbook</h1>
+      </Container>
+    </Section>
+  )
 }
