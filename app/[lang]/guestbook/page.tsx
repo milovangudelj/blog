@@ -75,9 +75,9 @@ export default async function GuestbookPage() {
             {entries.map(({ id, name, picture, message, username }) => (
               <li
                 key={id}
-                className="relative flex w-fit flex-col items-center overflow-hidden rounded-lg border border-white/[0.16] bg-black before:pointer-events-none before:absolute before:inset-0 before:block before:bg-noise before:bg-repeat before:opacity-60 before:[background-size:100px] md:flex-row"
+                className="relative flex w-fit flex-col items-center overflow-hidden rounded-lg border border-white/[0.16] bg-black/20 md:flex-row"
               >
-                <div className="flex-none self-stretch px-4 py-2">
+                <div className="flex-none self-stretch bg-black/40 px-4 py-2">
                   <div className="flex items-center gap-3">
                     <Image
                       src={picture}
@@ -90,7 +90,7 @@ export default async function GuestbookPage() {
                     <span className="text-body text-light-me">{name}</span>
                   </div>
                 </div>
-                <p className="relative flex items-center self-stretch border-white/[0.16] bg-black px-4 py-2 text-body text-light-he before:pointer-events-none before:absolute before:inset-0 before:block before:bg-noise before:bg-repeat before:opacity-80 before:[background-size:100px] max-md:border-t md:border-l">
+                <p className="relative flex items-center self-stretch border-white/[0.06] px-4 py-2 text-body text-light-he max-md:border-t md:border-l">
                   {message}
                 </p>
               </li>
