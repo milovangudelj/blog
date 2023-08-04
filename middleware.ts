@@ -5,6 +5,7 @@ import Negotiator from 'negotiator'
 import { generateSiteMap } from '~lib/sitemap'
 
 import { i18n } from '~/i18n.config'
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
 
 function getLocale(request: NextRequest): string | undefined {
   // Negotiator expects plain object so we need to transform headers
@@ -45,6 +46,10 @@ export const middleware = async (request: NextRequest) => {
   ) {
     return NextResponse.next()
   }
+
+  // Refresh the session for every request
+  const supabase = createMiddlewareClient({ req: request, res: NextResponse.next() })
+  await supabase.auth.getSession()
 
   const locale = getLocale(request) ?? 'en'
   reqHeaders.set('x-mg-locale', locale)
@@ -98,5 +103,5 @@ export const middleware = async (request: NextRequest) => {
 
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
-  matcher: ['/((?!api|studio|robots.txt|_next/static|_next/image|images|fonts).*)'],
+  matcher: ['/((?!api|studio|auth|robots.txt|_next/static|_next/image|images|fonts).*)'],
 }

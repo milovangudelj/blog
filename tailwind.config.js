@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -18,6 +19,9 @@ module.exports = {
       salmon: '#FF8575',
       'light-cyan': '#689BF9',
       'light-green': '#B1EBD3',
+      "tw-red": colors.red[500],
+      "tw-sky": colors.sky[500],
+      "tw-green": colors.green[500],
       dark: {
         he: 'rgba(0, 0, 0, .87)',
         me: 'rgba(0, 0, 0, .60)',

@@ -8,6 +8,7 @@ import {
 
 export interface ButtonProps<T extends ElementType> extends HTMLAttributes<T> {
   as?: T
+  variant?: 'primary' | 'secondary'
 }
 
 export const Button = forwardRef(
@@ -19,6 +20,7 @@ export const Button = forwardRef(
       fullWidth,
       className,
       as,
+      variant = 'primary',
       ...props
     }: ButtonProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>,
     ref: ComponentPropsWithRef<T>['ref']
@@ -27,7 +29,9 @@ export const Button = forwardRef(
 
     return (
       <Component
-        className="inline-block h-min min-w-fit rounded-lg bg-yellow px-4 py-2 text-center text-button text-black"
+        className={`inline-flex h-min min-w-fit items-center gap-3 rounded-lg ${
+          variant === 'primary' ? 'bg-yellow' : 'bg-white'
+        } px-4 py-2 text-center font-sans text-body font-medium text-black`}
         ref={ref}
         {...props}
       >
