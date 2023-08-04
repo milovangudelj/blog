@@ -77,7 +77,7 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
         {authenticated && (
           <button
             onClick={handleSignOut}
-            className="bg-transparent text-light-me hover:text-light-he"
+            className="flex-none bg-transparent text-light-me hover:text-light-he"
           >
             Sign out
           </button>
