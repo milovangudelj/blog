@@ -4,8 +4,6 @@ import { headers } from 'next/headers'
 
 import { Navbar } from '~/components'
 
-import { getSiteNavigation } from '~/sanity/lib/client'
-
 import confusedTravolta from '~images/johntravolta.webp'
 
 import '~styles/globals.css'

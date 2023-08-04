@@ -8,13 +8,16 @@ import { Locale } from '~/i18n.config'
 import { MobileNav } from '~components/MobileNav'
 import { NavLinks } from '~components/NavLinks'
 import { LanguageSwitch, LanguageSwitchFallback } from '~components/LanguageSwitch'
-import { SiteNavigationPayload } from '~/sanity/types'
 
 export const Navbar = ({
   links,
   lang,
 }: ComponentProps<'div'> & {
-  links: SiteNavigationPayload['links']
+  links: {
+    label: string
+    url: string
+    _key: string
+  }[]
   lang: Locale
 }) => {
   const [rect, navRef] = useClientRect()

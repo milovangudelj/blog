@@ -6,13 +6,16 @@ import { motion, type Variants } from 'framer-motion'
 import { Locale } from '~/i18n.config'
 
 import { NavLink } from '~components/NavLink'
-import { SiteNavigationPayload } from '~/sanity/types'
 
 export const MobileNav = ({
   links,
   lang,
 }: {
-  links: SiteNavigationPayload['links']
+  links: {
+    label: string
+    url: string
+    _key: string
+  }[]
   lang: Locale
 }) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false)

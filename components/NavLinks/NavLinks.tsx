@@ -2,14 +2,17 @@ import { twMerge } from 'tailwind-merge'
 
 import { NavLink } from '~components/NavLink/NavLink'
 import { Locale } from '~/i18n.config'
-import { SiteNavigationPayload } from '~/sanity/types'
 
 export const NavLinks = ({
   links,
   className,
   lang,
 }: {
-  links: SiteNavigationPayload['links']
+  links: {
+    label: string
+    url: string
+    _key: string
+  }[]
   className?: string
   lang: Locale
 }) => {

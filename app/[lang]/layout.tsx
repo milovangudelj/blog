@@ -1,6 +1,5 @@
 import localFont from 'next/font/local'
 
-import { getSiteNavigation } from '~/sanity/lib/client'
 import { i18n, Locale } from '~/i18n.config'
 
 import '~styles/globals.css'
