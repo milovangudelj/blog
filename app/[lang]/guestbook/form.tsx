@@ -47,10 +47,7 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
 
   return (
     <div className="flex max-w-[800px] flex-col gap-1">
-      <form
-        onSubmit={onSubmit}
-        className="flex flex-1 items-center gap-1 rounded-xl bg-white/[0.06] p-1"
-      >
+      <form onSubmit={onSubmit} className="flex items-center gap-1 rounded-xl bg-white/[0.06] p-1">
         <input
           {...register('signature', {
             required: { value: true, message: 'This field is required' },
@@ -58,9 +55,8 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
           })}
           aria-invalid={errors.signature ? 'true' : 'false'}
           placeholder="Type here your message..."
-          className="form-input flex-1 rounded-lg border border-white/[0.06] bg-transparent px-4 py-2 text-body text-light-he transition placeholder:text-light-me focus:border-yellow focus:ring-yellow"
+          className="form-input min-w-0 flex-1 rounded-lg border border-white/[0.06] bg-transparent px-4 py-2 text-body text-light-he transition placeholder:text-light-me focus:border-yellow focus:ring-yellow"
         />
-
         {authenticated && (
           <Button type="submit" variant="primary">
             Sign
@@ -68,7 +64,9 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
         )}
         {!authenticated && (
           <Button variant="secondary" type="button" onClick={handleSignIn}>
-            <span>Sign in with GitHub</span>
+            <span>
+              Sign in<span className="hidden md:inline"> with GitHub</span>
+            </span>
             <span className="rounded-full bg-black p-2 text-white">
               <GithubLogo size={16} />
             </span>
