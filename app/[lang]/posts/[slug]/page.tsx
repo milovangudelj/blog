@@ -1,7 +1,9 @@
 import { Metadata } from 'next'
-import { Container, Section } from '~/components'
-import { Locale } from '~/i18n.config'
 
+import { Container } from '~/components/Container'
+import { Section } from '~/components/Section'
+
+import { Locale } from '~/i18n.config'
 import { getPostBySlug, getPostPaths } from '~/sanity/lib/client'
 import { urlForImage } from '~/sanity/lib/image'
 import { toPlainText } from '~/utils/toPlainText'

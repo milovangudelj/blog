@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Container, Section } from '~/components'
+import { Container } from '~/components/Container'
+import { Section } from '~/components/Section'
 
 import { Locale } from '~/i18n.config'
 import { getPosts } from '~/sanity/lib/client'
