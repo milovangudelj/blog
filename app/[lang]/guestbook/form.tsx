@@ -54,7 +54,7 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
             maxLength: { value: 255, message: 'The message must be shorter than 255 carachters' },
           })}
           aria-invalid={errors.signature ? 'true' : 'false'}
-          placeholder="Type here your message..."
+          placeholder="Your message..."
           className="form-input min-w-0 flex-1 rounded-lg border border-white/[0.06] bg-transparent px-4 py-2 text-body text-light-he transition placeholder:text-light-me focus:border-yellow focus:ring-yellow"
         />
         {authenticated && (
