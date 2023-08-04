@@ -21,6 +21,7 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
     handleSubmit,
     formState: { errors },
     clearErrors,
+    reset,
   } = useForm<FormData>()
 
   const onSubmit = handleSubmit((data, e) => {
@@ -36,6 +37,8 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
         signature: data.signature,
       }),
     })
+
+    reset()
 
     router.refresh()
   })
