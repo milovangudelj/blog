@@ -65,7 +65,7 @@ export default async function GuestbookPage() {
     <>
       <Section>
         <Container>
-          <h1 className="mb-16 text-h1">Sign the guestbook</h1>
+          <h1 className="mb-16 text-h1-mobile md:text-d1-mobile 2xl:text-d1">Sign the guestbook</h1>
           <Form authenticated={session ? true : false} />
         </Container>
       </Section>
