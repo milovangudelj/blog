@@ -11,17 +11,46 @@ export const dynamic = 'force-dynamic'
 const entries = [
   {
     id: 1,
-    name: 'John Doe',
+    name: 'Tony Stark',
     picture: 'https://avatars.githubusercontent.com/u/49202538?v=4',
-    message: 'Hi Milo!',
-    username: 'milovangudelj',
+    message: 'Meh, I could have done it blindfolded when I was 5...',
+    username: 'tonystark',
   },
   {
     id: 2,
-    name: 'John Doe',
+    name: 'Jane Foster',
     picture: 'https://avatars.githubusercontent.com/u/49202538?v=4',
-    message: 'Hi Milo!',
-    username: 'milovangudelj',
+    message: "It's... nice. Lacks a bit of space.",
+    username: 'janefoster',
+  },
+  {
+    id: 3,
+    name: 'Steve Rogers',
+    picture: 'https://avatars.githubusercontent.com/u/49202538?v=4',
+    message: 'I like it. It reminds me of the 40s.',
+    username: 'steverogers',
+  },
+  {
+    id: 4,
+    name: 'Bruce Banner',
+    picture: 'https://avatars.githubusercontent.com/u/49202538?v=4',
+    message: 'I prefer the other one.',
+    username: 'brucebanner',
+  },
+  {
+    id: 5,
+    name: 'Thor Odinson',
+    picture: 'https://avatars.githubusercontent.com/u/49202538?v=4',
+    message:
+      'Our websites looked like this fifty thousand years ago. Then we stopped using the internet. Too antiquated.',
+    username: 'thorodinson',
+  },
+  {
+    id: 6,
+    name: 'Peter Parker',
+    picture: 'https://avatars.githubusercontent.com/u/49202538?v=4',
+    message: 'Coool! * insert a pop culture reference here *',
+    username: 'peterparker',
   },
 ]
 
