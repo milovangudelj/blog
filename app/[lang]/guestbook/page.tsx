@@ -71,13 +71,13 @@ export default async function GuestbookPage() {
       </Section>
       <Section>
         <Container>
-          <ul className="flex flex-col gap-8">
+          <ul className="flex max-w-[800px] flex-col gap-8">
             {entries.map(({ id, name, picture, message, username }) => (
               <li
                 key={id}
                 className="relative flex w-fit flex-col items-center overflow-hidden rounded-lg border border-white/[0.16] bg-black before:pointer-events-none before:absolute before:inset-0 before:block before:bg-noise before:bg-repeat before:opacity-60 before:[background-size:100px] md:flex-row"
               >
-                <div className="self-stretch px-4 py-2">
+                <div className="flex-none self-stretch px-4 py-2">
                   <div className="flex items-center gap-3">
                     <Image
                       src={picture}
