@@ -6,6 +6,8 @@ import { Section } from '~/components/Section'
 import { Form } from './form'
 import Image from 'next/image'
 
+export const dynamic = 'force-dynamic'
+
 const entries = [
   {
     id: 1,
