@@ -73,7 +73,7 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
           </Button>
         )}
       </form>
-      <div className="flex flex-1 gap-2 text-label-md">
+      <div className="flex flex-1 items-baseline gap-2 text-label-md">
         {authenticated && (
           <button
             onClick={handleSignOut}
