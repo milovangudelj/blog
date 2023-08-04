@@ -5,10 +5,12 @@ import { getDictionary } from '~utils/getDictionary'
 import { Locale } from '~/i18n.config'
 import Image from 'next/image'
 import Link from 'next/link'
-
-import posts from '~/data/posts.json'
+import { getPosts } from '~/sanity/lib/client'
+import { urlForImage } from '~/sanity/lib/image'
 
 const Home = async ({ params: { lang } }: { params: { lang: Locale } }) => {
+  const posts = await getPosts(lang)
+
   const dictionary = await getDictionary(lang)
 
   return (
@@ -38,12 +40,16 @@ const Home = async ({ params: { lang } }: { params: { lang: Locale } }) => {
             {posts.slice(0, 3).map((post) => (
               <li key={post.slug} className="">
                 <Image
-                  src={post.image}
-                  sizes="768px"
-                  width={384}
-                  height={(384 / 16) * 9}
-                  alt=""
+                  src={urlForImage(post.cover.image).url()}
                   className="mb-8 aspect-video w-[384px] rounded-2xl border border-white/[0.06] object-cover shadow-2xl"
+                  sizes="768px"
+                  quality={100}
+                  alt={post.cover.image.alt ?? post.cover.image.caption}
+                  title={post.cover.image.alt ?? post.cover.image.caption}
+                  width={post.cover.width}
+                  height={post.cover.height}
+                  placeholder="blur"
+                  blurDataURL={post.cover.lqip}
                 />
                 <div className="flex flex-col">
                   <Link
@@ -57,7 +63,7 @@ const Home = async ({ params: { lang } }: { params: { lang: Locale } }) => {
                   </Link>
 
                   <span className="inline-block max-w-full truncate text-label-md text-light-me">
-                    {post.views} views
+                    {46} views
                   </span>
                 </div>
               </li>
