@@ -84,7 +84,7 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
         )}
         {errors.signature && (
           <>
-            <span className="text-light-le">·</span>
+            {authenticated && <span className="text-light-le">·</span>}
             <span className="text-tw-red">{errors.signature.message}</span>
           </>
         )}
