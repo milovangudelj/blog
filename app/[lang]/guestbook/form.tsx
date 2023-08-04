@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import { GithubLogo } from '@phosphor-icons/react'
 
 import { Button } from '~/components/Button'
+import { Database } from '~/types/supabase'
 
 type FormData = {
   signature: string
@@ -13,7 +14,7 @@ type FormData = {
 
 export function Form({ authenticated }: { authenticated?: boolean }) {
   const router = useRouter()
-  const supabase = createClientComponentClient()
+  const supabase = createClientComponentClient<Database>()
 
   const {
     register,
@@ -26,7 +27,17 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
     e?.preventDefault()
     if (!authenticated) return
 
-    console.log(data)
+    fetch('/api/guestbook', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        signature: data.signature,
+      }),
+    })
+
+    router.refresh()
   })
 
   async function handleSignIn() {
@@ -36,6 +47,7 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
         redirectTo: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/auth/callback`,
       },
     })
+
     router.refresh()
   }
 

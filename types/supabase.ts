@@ -1,8 +1,38 @@
-export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
 
 export interface Database {
   public: {
     Tables: {
+      guestbook: {
+        Row: {
+          author_pfp: string
+          body: string
+          created_at: string
+          created_by: string
+          id: string
+        }
+        Insert: {
+          author_pfp: string
+          body: string
+          created_at?: string
+          created_by: string
+          id?: string
+        }
+        Update: {
+          author_pfp?: string
+          body?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+        }
+        Relationships: []
+      }
       spotify_access_token: {
         Row: {
           created_at: string
