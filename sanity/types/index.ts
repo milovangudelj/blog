@@ -1,28 +1,9 @@
 import type { PortableTextBlock } from '@portabletext/types'
-import type { Image, ImageAsset, Reference } from 'sanity'
+import type { Image } from 'sanity'
 
-export interface SiteNavigationPayload {
-  links: {
-    label: string
-    url: string
-    _key: string
-  }[]
-}
-
-export interface ShowcaseProject {
-  _type: string
-  coverImage?: Image
-  overview?: PortableTextBlock[]
-  slug?: string
-  tags?: string[]
-  title?: string
-}
-
-export interface ProjectPayload {
+export interface PostPayload {
   title: string
   slug: string
-  year: number
-  site: string
   cover: {
     image: Image & {
       alt: string
@@ -32,49 +13,15 @@ export interface ProjectPayload {
     width: number
     height: number
   }
-  overview: PortableTextBlock[]
-  color: string
-  client: string
-  tags: string[]
-  caseStudy: Reference | null
-}
-
-export interface SlimProjectPayload {
-  title: string
-  slug: string
-  site: string
-  cover: {
-    image: Image & {
-      alt: string
-      caption: string
-    }
-    lqip: string
-    width: number
-    height: number
-  }
-}
-
-export interface CaseStudyPayload {
-  title: string
-  subtitle: string
   intro: PortableTextBlock[]
   body: PortableTextBlock[]
-  color: string
-  cover: {
-    image: Image & {
-      alt: string
-      caption: string
-    }
-    lqip: string
-    width: number
-    height: number
-  }
+  tags: string[]
 }
 
-export interface PosterPayload {
+export interface SlimPostPayload {
   title: string
-  day: number
-  image: {
+  slug: string
+  cover: {
     image: Image & {
       alt: string
       caption: string

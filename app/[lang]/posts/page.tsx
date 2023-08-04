@@ -3,9 +3,13 @@ import Link from 'next/link'
 
 import { Container, Section } from '~/components'
 
-import posts from '~/data/posts.json'
+import { Locale } from '~/i18n.config'
+import { getPosts } from '~/sanity/lib/client'
+import { urlForImage } from '~/sanity/lib/image'
 
-export default async function PostsPage() {
+export default async function PostsPage({ params: { lang } }: { params: { lang: Locale } }) {
+  const posts = await getPosts(lang)
+
   return (
     <>
       <Section>
@@ -15,12 +19,16 @@ export default async function PostsPage() {
             {posts.slice(0, 3).map((post) => (
               <li key={post.slug}>
                 <Image
-                  src={post.image}
-                  sizes="768px"
-                  width={384}
-                  height={(384 / 16) * 9}
-                  alt=""
+                  src={urlForImage(post.cover.image).url()}
                   className="mb-8 aspect-video w-[384px] rounded-2xl border border-white/[0.06] object-cover shadow-2xl"
+                  sizes="768px"
+                  quality={100}
+                  alt={post.cover.image.alt ?? post.cover.image.caption}
+                  title={post.cover.image.alt ?? post.cover.image.caption}
+                  width={post.cover.width}
+                  height={post.cover.height}
+                  placeholder="blur"
+                  blurDataURL={post.cover.lqip}
                 />
                 <div className="flex flex-col">
                   <Link
@@ -33,7 +41,7 @@ export default async function PostsPage() {
                     </span>
                   </Link>
                   <span className="inline-block max-w-full truncate text-label-md text-light-me">
-                    {post.views} views
+                    {46} views
                   </span>
                 </div>
               </li>
@@ -58,7 +66,7 @@ export default async function PostsPage() {
                     </span>
                   </Link>
                   <span className="inline-block max-w-full truncate text-label-md text-light-me">
-                    {post.views} views
+                    {46} views
                   </span>
                   <p className="mt-8 line-clamp-3 text-light-me">
                     Lorem ipsum is placeholder text commonly used in the graphic, print, and
@@ -68,12 +76,16 @@ export default async function PostsPage() {
                   </p>
                 </div>
                 <Image
-                  src={post.image}
-                  sizes="900px"
-                  width={450}
-                  height={(450 / 16) * 9}
-                  alt=""
                   className="aspect-video w-[450px] rounded-2xl border border-white/[0.06] object-cover shadow-2xl"
+                  src={urlForImage(post.cover.image).url()}
+                  sizes="900px"
+                  quality={100}
+                  alt={post.cover.image.alt ?? post.cover.image.caption}
+                  title={post.cover.image.alt ?? post.cover.image.caption}
+                  width={post.cover.width}
+                  height={post.cover.height}
+                  placeholder="blur"
+                  blurDataURL={post.cover.lqip}
                 />
               </li>
             ))}

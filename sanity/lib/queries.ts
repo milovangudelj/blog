@@ -1,65 +1,20 @@
 import { groq } from 'next-sanity'
 
-export const siteNavigationQuery = groq`
-  *[_type == "siteNavigation" && _id == "siteNavigation"][0]{
-    "links": links[]{
-      _key,
-      url,
-      "label": label[$lang],
-    }
-  }
-`
-
-export const projectBySlugQuery = groq`
-  *[_type == "project" && slug.current == $slug][language == $lang || count(*[_type == "translation.metadata" && references(^._id)]) == 0][0] {
-    title,
-  }
-`
-
-export const projectsQuery = groq`
-  *[_type == "project" && (language == $lang || count(*[_type == "translation.metadata" && references(^._id)]) == 0)] {
+export const postBySlugQuery = groq`
+  *[_type == "post" && slug.current == $slug][language == $lang || count(*[_type == "translation.metadata" && references(^._id)]) == 0][0] {
     title,
     "slug": slug.current,
-    year,
-    site,
     "cover": {
       "image": cover,
       "lqip": cover.asset->metadata.lqip,
       "width": cover.asset->metadata.dimensions.width,
       "height": cover.asset->metadata.dimensions.height,
     },
-    overview,
-    "color": color.hex,
-    client,
-    "tags": tags[]->value,
-    caseStudy,
-  }
-`
-
-export const slimProjectsQuery = groq`
-  *[_type == "project" && (language == $lang || count(*[_type == "translation.metadata" && references(^._id)]) == 0)] {
-    title,
-    "slug": slug.current,
-    site,
-    "cover": {
-      "image": cover,
-      "lqip": cover.asset->metadata.lqip,
-      "width": cover.asset->metadata.dimensions.width,
-      "height": cover.asset->metadata.dimensions.height,
-    },
-  }
-`
-
-export const caseStudyBySlugQuery = groq`
-  *[_type == "project" && slug.current == $slug][language == $lang || count(*[_type == "translation.metadata" && references(^._id)]) == 0][0].caseStudy->{
-    title,
-    subtitle,
     intro,
-    "body": content[]{
+    "body": body[]{
       _type == 'image' => @{
         _key,
         _type,
-        caption,
         alt,
         hotspot,
         crop,
@@ -67,33 +22,49 @@ export const caseStudyBySlugQuery = groq`
       },
       _type != 'image' => @,
     },
-    "color": project->color.hex,
+    "tags": tags[]->value,
+  }
+`
+
+export const postsQuery = groq`
+  *[_type == "post" && (language == $lang || count(*[_type == "translation.metadata" && references(^._id)]) == 0)] {
+    title,
+    "slug": slug.current,
     "cover": {
       "image": cover,
       "lqip": cover.asset->metadata.lqip,
       "width": cover.asset->metadata.dimensions.width,
       "height": cover.asset->metadata.dimensions.height,
-    }
-  }
-`
-
-export const projectPaths = groq`
-  *[_type == "project" && language == "en" && slug.current != null].slug.current
-`
-
-export const caseStudyPaths = groq`
-  *[_type == "caseStudy" && language == "en"].project->slug.current
-`
-
-export const postersQuery = groq`
-  *[_type == "poster"] | order(_createdAt asc)[0..7] {
-    title,
-    day,
-    "image": {
-      "image": image,
-      "lqip": image.asset->metadata.lqip,
-      "width": image.asset->metadata.dimensions.width,
-      "height": image.asset->metadata.dimensions.height,
     },
+    intro,
+    "body": body[]{
+      _type == 'image' => @{
+        _key,
+        _type,
+        alt,
+        hotspot,
+        crop,
+        asset->,
+      },
+      _type != 'image' => @,
+    },
+    "tags": tags[]->value,
   }
+`
+
+export const slimPostsQuery = groq`
+*[_type == "post" && (language == $lang || count(*[_type == "translation.metadata" && references(^._id)]) == 0)] {
+  title,
+  "slug": slug.current,
+  "cover": {
+    "image": cover,
+    "lqip": cover.asset->metadata.lqip,
+    "width": cover.asset->metadata.dimensions.width,
+    "height": cover.asset->metadata.dimensions.height,
+  },
+}
+`
+
+export const postPaths = groq`
+  *[_type == "post" && language == "en" && slug.current != null].slug.current
 `
