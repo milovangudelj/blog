@@ -55,7 +55,7 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
           })}
           aria-invalid={errors.signature ? 'true' : 'false'}
           placeholder="Your message..."
-          className="form-input min-w-0 flex-1 rounded-lg border border-white/[0.06] bg-transparent px-4 py-2 text-body text-light-he transition placeholder:text-light-me focus:border-yellow focus:ring-yellow"
+          className="form-input min-w-0 flex-1 rounded-lg border border-white/[0.06] bg-transparent px-4 py-2 text-body text-light-he transition placeholder:text-light-le focus:border-yellow focus:ring-yellow"
         />
         {authenticated && (
           <Button type="submit" variant="primary">
