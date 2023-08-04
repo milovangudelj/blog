@@ -33,7 +33,7 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
     await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: `${location.origin}/auth/callback`,
+        redirectTo: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/auth/callback`,
       },
     })
     router.refresh()
