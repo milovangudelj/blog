@@ -1,14 +1,14 @@
+import { Suspense } from 'react'
 import { cookies } from 'next/headers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import { Container } from '~/components/Container'
 import { Section } from '~/components/Section'
 import { Form } from './form'
-import Image from 'next/image'
-import { Database } from '~/types/supabase'
 import { Entries } from './entries'
-import { Suspense } from 'react'
 import { EntriesBones } from './entries_bones'
+
+import { Database } from '~/types/supabase'
 
 export const dynamic = 'force-dynamic'
 
