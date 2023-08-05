@@ -15,7 +15,7 @@ const Home = async ({ params: { lang } }: { params: { lang: Locale } }) => {
 
   return (
     <>
-      <Section className="relative text-white lg:h-[var(--mobile-nav-height)]">
+      <Section className="relative text-white">
         <Container as="main" className="relative">
           <h1 className="mb-16 max-w-[600px] text-h1-mobile md:text-d1-mobile 2xl:text-d1">
             {dictionary.Home.heroTitle}
