@@ -66,7 +66,7 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
         <input
           {...register('signature', {
             required: { value: true, message: 'This field is required' },
-            maxLength: { value: 255, message: 'The message must be shorter than 255 carachters' },
+            maxLength: { value: 132, message: 'The message must be shorter than 132 carachters' },
           })}
           aria-invalid={errors.signature ? 'true' : 'false'}
           placeholder="Your message..."
