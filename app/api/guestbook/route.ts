@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
+import Filter from 'bad-words'
+
 import { Database } from '~/types/supabase'
 
 export const dynamic = 'force-dynamic'
@@ -25,10 +27,15 @@ export async function POST(request: NextRequest) {
     })
   }
 
+  const filter = new Filter()
+  const cleanSignature = filter.clean(signature)
+  console.log(cleanSignature)
+
   // TODO: add profanity censoring for signature (bad-words + chat-gpt-3.5-turbo)
 
   await supabase.from('guestbook').insert({
-    body: signature,
+    body: cleanSignature,
+    uncensored_body: signature,
     author_pfp: session.user!.user_metadata.avatar_url,
     created_by: session.user!.user_metadata.name,
   })

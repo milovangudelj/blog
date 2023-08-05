@@ -16,6 +16,7 @@ export interface Database {
           created_at: string
           created_by: string
           id: string
+          uncensored_body: string
         }
         Insert: {
           author_pfp: string
@@ -23,6 +24,7 @@ export interface Database {
           created_at?: string
           created_by: string
           id?: string
+          uncensored_body: string
         }
         Update: {
           author_pfp?: string
@@ -30,6 +32,7 @@ export interface Database {
           created_at?: string
           created_by?: string
           id?: string
+          uncensored_body?: string
         }
         Relationships: []
       }

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 
 import { Database } from '~/types/supabase'
 
-type GuestbookEntry = Database['public']['Tables']['guestbook']['Row']
+type GuestbookEntry = Omit<Database['public']['Tables']['guestbook']['Row'], 'uncensored_body'>
 
 export const Entries = ({ entries: initialEntries }: { entries: GuestbookEntry[] }) => {
   const [entries, setEntries] = useState(initialEntries)

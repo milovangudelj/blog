@@ -39,8 +39,6 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
     })
 
     reset()
-
-    router.refresh()
   })
 
   async function handleSignIn() {

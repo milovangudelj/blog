@@ -19,6 +19,7 @@
     "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
+    "bad-words": "^3.0.4",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
     "framer-motion": "^10.15.0",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.4",
     "@tailwindcss/typography": "^0.5.9",
+    "@types/bad-words": "^3.0.1",
     "@types/negotiator": "^0.6.1",
     "encoding": "^0.1.13",
     "prettier": "^3.0.1",
