@@ -22,6 +22,7 @@ export default async function GuestbookPage() {
   const { data: entries } = await supabase
     .from('guestbook')
     .select('id, created_at, created_by, body, author_pfp')
+    .filter('is_published', 'eq', true)
     .order('created_at', { ascending: false })
 
   return (
