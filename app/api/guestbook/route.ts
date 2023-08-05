@@ -2,8 +2,16 @@ import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import Filter from 'bad-words'
+import { Configuration, CreateChatCompletionResponse, OpenAIApi } from 'openai-edge'
 
 import { Database } from '~/types/supabase'
+
+const openAIConfig = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+})
+const openai = new OpenAIApi(openAIConfig)
+
+export const runtime = 'edge'
 
 export const dynamic = 'force-dynamic'
 
@@ -28,13 +36,26 @@ export async function POST(request: NextRequest) {
   }
 
   const filter = new Filter()
-  const cleanSignature = filter.clean(signature)
-  console.log(cleanSignature)
+  const cl1_signature = filter.clean(signature) // 1st level cleanup filter
 
-  // TODO: add profanity censoring for signature (bad-words + chat-gpt-3.5-turbo)
+  const response = (await (
+    await openai.createChatCompletion({
+      model: 'gpt-3.5-turbo',
+      stream: false,
+      temperature: 0,
+      messages: [
+        {
+          role: 'user',
+          content: `Censor the following message. Use asterisks to censor only profane words. \n\nSignature: "Holy shit that's crazy!"\nCensored Signature: Holy **** tat's crazy!\n\nSignature: "This website looks like 5hiet..."\nCensored Signature: This website looks like *****...\n\nSignature: "${cl1_signature}"\n\nCensored Signature:`,
+        },
+      ],
+    })
+  ).json()) as CreateChatCompletionResponse
+
+  const cl2_signature = response.choices[0].message?.content // 2nd level cleanup flter
 
   await supabase.from('guestbook').insert({
-    body: cleanSignature,
+    body: cl2_signature ?? cl1_signature,
     uncensored_body: signature,
     author_pfp: session.user!.user_metadata.avatar_url,
     created_by: session.user!.user_metadata.name,
