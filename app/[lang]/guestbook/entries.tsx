@@ -82,7 +82,7 @@ export const Entries = ({
       supabase.removeChannel(newEntry)
       supabase.removeChannel(updatedEntry)
     }
-  }, [supabase, setEntries, entries])
+  }, [supabase, setEntries, entries, isOwner])
 
   const handleVisibilityToggle = (id: string, is_published: boolean, new_is_published: boolean) => {
     console.log(is_published, new_is_published)
