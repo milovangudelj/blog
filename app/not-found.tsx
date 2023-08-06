@@ -46,7 +46,7 @@ export default async function NotFound() {
   return (
     <html lang={lang} className={`${inter.variable} ${spaceGrotesk.variable} bg-black text-white`}>
       <body>
-        <div className="min-h-[100dvh] bg-black bg-noise bg-repeat [background-size:100px]">
+        <div className="bg-noise min-h-[100dvh] bg-black">
           <Navbar lang={lang} links={links[lang]} />
 
           <div className="flex h-[var(--mobile-nav-height)] flex-col items-center justify-center gap-16 px-8">

@@ -1,5 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
+const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -19,9 +20,9 @@ module.exports = {
       salmon: '#FF8575',
       'light-cyan': '#689BF9',
       'light-green': '#B1EBD3',
-      "tw-red": colors.red[500],
-      "tw-sky": colors.sky[500],
-      "tw-green": colors.green[500],
+      'tw-red': colors.red[500],
+      'tw-sky': colors.sky[500],
+      'tw-green': colors.green[500],
       dark: {
         he: 'rgba(0, 0, 0, .87)',
         me: 'rgba(0, 0, 0, .60)',
@@ -356,12 +357,27 @@ module.exports = {
       },
       backgroundImage: {
         'chevron-down': 'url(/images/chevron-down.svg)',
-        noise: 'url(/images/noise.webp)',
         'album-noise': 'url(/images/album-noise.webp)',
         'fading-dashes': 'url(/images/fading-dashed-line.svg)',
         'h-fading-dashes': 'url(/images/fading-dashed-horizontal-line.svg)',
       },
     },
   },
-  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+    plugin(function ({ addComponents, theme }) {
+      addComponents({
+        '.bg-noise': {
+          '@apply relative': {},
+          '&::before': {
+            '@apply pointer-events-none absolute isolate inset-0 block bg-repeat [background-size:100px]':
+              {},
+            content: "''",
+            backgroundImage: `url(/images/noise.webp)`,
+          },
+        },
+      })
+    }),
+  ],
 }

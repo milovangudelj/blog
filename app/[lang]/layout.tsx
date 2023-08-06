@@ -100,7 +100,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang={params.lang} className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="relative min-h-screen scroll-smooth bg-black font-sans text-white before:pointer-events-none before:absolute before:inset-0 before:block before:bg-noise before:bg-repeat before:[background-size:100px]">
+      <body className="bg-noise min-h-screen scroll-smooth bg-black font-sans text-white">
         <Navbar lang={params.lang} links={links[params.lang]} />
         <div className="relative">{children}</div>
         <Footer lang={params.lang} />

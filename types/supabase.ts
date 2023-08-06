@@ -16,6 +16,7 @@ export interface Database {
           created_at: string
           created_by: string
           id: string
+          is_published: boolean
           uncensored_body: string
         }
         Insert: {
@@ -24,6 +25,7 @@ export interface Database {
           created_at?: string
           created_by: string
           id?: string
+          is_published: boolean
           uncensored_body: string
         }
         Update: {
@@ -32,6 +34,7 @@ export interface Database {
           created_at?: string
           created_by?: string
           id?: string
+          is_published?: boolean
           uncensored_body?: string
         }
         Relationships: []

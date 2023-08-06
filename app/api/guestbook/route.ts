@@ -52,12 +52,47 @@ export async function POST(request: NextRequest) {
 
   const cl2_signature = response.choices[0].message?.content // 2nd level cleanup flter
 
-  await supabase.from('guestbook').insert({
+  const { status, statusText } = await supabase.from('guestbook').insert({
     body: cl2_signature ?? cl1_signature,
     uncensored_body: signature,
     author_pfp: session.user!.user_metadata.avatar_url,
     created_by: session.user!.user_metadata.name,
+    is_published: true,
   })
 
-  return NextResponse.json({ success: true })
+  return NextResponse.json({ status, statusText })
+}
+
+export async function PATCH(request: NextRequest) {
+  const supabase = createRouteHandlerClient<Database>({ cookies })
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (!session || session.user.id !== process.env.SUPABASE_OWNER_ID) {
+    return new NextResponse('Unauthorized! Please log in as the owner to update the guestbook.', {
+      status: 401,
+    })
+  }
+
+  const { entry_id, entry_is_published } = await request.json()
+
+  console.log('entry_id:', entry_id)
+  console.log('entry_is_published:', entry_is_published)
+
+  if (!entry_id || entry_is_published === undefined || entry_is_published === null) {
+    return new NextResponse('Bad Request: missing signature body...', {
+      status: 400,
+    })
+  }
+
+  console.log('Executing...')
+  const { status, statusText, error } = await supabase
+    .from('guestbook')
+    .update({ is_published: entry_is_published })
+    .eq('id', entry_id)
+
+  console.log('Done.', statusText)
+
+  return NextResponse.json({ status, statusText })
 }

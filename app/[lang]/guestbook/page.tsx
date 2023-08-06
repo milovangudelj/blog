@@ -19,11 +19,15 @@ export default async function GuestbookPage() {
     data: { session },
   } = await supabase.auth.getSession()
 
-  const { data: entries } = await supabase
+  const entriesQuery = supabase
     .from('guestbook')
-    .select('id, created_at, created_by, body, author_pfp')
-    .filter('is_published', 'eq', true)
+    .select('id, created_at, created_by, body, author_pfp, is_published')
     .order('created_at', { ascending: false })
+
+  const { data: entries } =
+    session?.user.id === process.env.SUPABASE_OWNER_ID
+      ? await entriesQuery
+      : await entriesQuery.filter('is_published', 'eq', true)
 
   return (
     <>
@@ -37,7 +41,10 @@ export default async function GuestbookPage() {
         <Container>
           <ul className="flex max-w-[800px] flex-col gap-8">
             <Suspense fallback={<EntriesBones entries={entries ?? []} />}>
-              <Entries entries={entries ?? []} />
+              <Entries
+                entries={entries ?? []}
+                isOwner={session?.user.id === process.env.SUPABASE_OWNER_ID}
+              />
             </Suspense>
           </ul>
         </Container>
