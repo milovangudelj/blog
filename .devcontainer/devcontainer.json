@@ -11,7 +11,7 @@
     }
   },
   "postCreateCommand": [
-    "echo alias cls=clear >> /home/codespace/.bashrc && echo alias cls=clear >> /home/codespace/config.fish && source /home/codespace/.bashrc && fish && source /home/codespace/config.fish"
+    "echo alias cls=clear >> /home/codespace/.bashrc && echo alias cls=clear >> /home/codespace/.config/fish/config.fish && source /home/codespace/.bashrc && pnpm install"
   ],
   "customizations": {
     "vscode": {
