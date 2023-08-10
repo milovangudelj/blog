@@ -78,22 +78,16 @@ export async function PATCH(request: NextRequest) {
 
   const { entry_id, entry_is_published } = await request.json()
 
-  console.log('entry_id:', entry_id)
-  console.log('entry_is_published:', entry_is_published)
-
   if (!entry_id || entry_is_published === undefined || entry_is_published === null) {
     return new NextResponse('Bad Request: missing signature body...', {
       status: 400,
     })
   }
 
-  console.log('Executing...')
   const { status, statusText, error } = await supabase
     .from('guestbook')
     .update({ is_published: entry_is_published })
     .eq('id', entry_id)
-
-  console.log('Done.', statusText)
 
   return NextResponse.json({ status, statusText })
 }
