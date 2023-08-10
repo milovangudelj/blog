@@ -85,8 +85,6 @@ export const Entries = ({
   }, [supabase, setEntries, entries, isOwner])
 
   const handleVisibilityToggle = (id: string, is_published: boolean, new_is_published: boolean) => {
-    console.log(is_published, new_is_published)
-
     fetch('/api/guestbook', {
       method: 'PATCH',
       headers: {
