@@ -10,7 +10,19 @@
       "version": 18
     }
   },
-  "postCreateCommand": "echo alias cls=clear >> /home/codespace/config.fish && source /home/codespace/config.fish && pnpm install",
+  "postCreateCommand": [
+    "echo alias cls=clear >> /home/codespace/.bashrc",
+    "&&",
+    "echo alias cls=clear >> /home/codespace/config.fish",
+    "&&",
+    "source /home/codespace/.bashrc",
+    "&&",
+    "fish",
+    "&&",
+    "source /home/codespace/config.fish",
+    "&&",
+    "pnpm install"
+  ],
   "customizations": {
     "vscode": {
       "extensions": ["esbenp.prettier-vscode", "bradlc.vscode-tailwindcss"]
