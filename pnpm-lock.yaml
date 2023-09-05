@@ -19,10 +19,13 @@ dependencies:
     version: 1.0.2
   '@supabase/auth-helpers-nextjs':
     specifier: ^0.7.4
-    version: 0.7.4(@supabase/supabase-js@2.31.0)
+    version: 0.7.4(@supabase/supabase-js@2.33.1)
+  '@supabase/gotrue-js':
+    specifier: 2.47.0
+    version: 2.47.0(encoding@0.1.13)
   '@supabase/supabase-js':
-    specifier: ^2.31.0
-    version: 2.31.0(encoding@0.1.13)
+    specifier: ^2.33.1
+    version: 2.33.1(encoding@0.1.13)
   '@types/node':
     specifier: 20.4.5
     version: 20.4.5
@@ -1250,22 +1253,22 @@ packages:
       tslib: 2.6.1
     dev: false
 
-  /@supabase/auth-helpers-nextjs@0.7.4(@supabase/supabase-js@2.31.0):
+  /@supabase/auth-helpers-nextjs@0.7.4(@supabase/supabase-js@2.33.1):
     resolution: {integrity: sha512-MyGCkB7LEDcGrKmesKGjyG54Jlbiss8VGTegrNde/ywXujQyRFnzycijoASDBc6i9SmE7eE1qWBsMr2URb07nw==}
     peerDependencies:
       '@supabase/supabase-js': ^2.19.0
     dependencies:
-      '@supabase/auth-helpers-shared': 0.4.1(@supabase/supabase-js@2.31.0)
-      '@supabase/supabase-js': 2.31.0(encoding@0.1.13)
+      '@supabase/auth-helpers-shared': 0.4.1(@supabase/supabase-js@2.33.1)
+      '@supabase/supabase-js': 2.33.1(encoding@0.1.13)
       set-cookie-parser: 2.6.0
     dev: false
 
-  /@supabase/auth-helpers-shared@0.4.1(@supabase/supabase-js@2.31.0):
+  /@supabase/auth-helpers-shared@0.4.1(@supabase/supabase-js@2.33.1):
     resolution: {integrity: sha512-IEDX9JzWkIjQiLUaP4Qy5YDiG0jFQatWfS+jw8cCQs6QfbNdEPd2Y3qonwGHnM90CZom9SvjuylBv2pFVAL7Lw==}
     peerDependencies:
       '@supabase/supabase-js': ^2.19.0
     dependencies:
-      '@supabase/supabase-js': 2.31.0(encoding@0.1.13)
+      '@supabase/supabase-js': 2.33.1(encoding@0.1.13)
       jose: 4.14.4
     dev: false
 
@@ -1277,24 +1280,29 @@ packages:
       - encoding
     dev: false
 
-  /@supabase/gotrue-js@2.46.1(encoding@0.1.13):
-    resolution: {integrity: sha512-tebFX3XvPqEJKHOVgkXTN20g9iUhLx6tebIYQvTggYTrqOT2af8oTpSBdgYzbwJ291G6P6CSpR6KY0cT9ade5A==}
+  /@supabase/gotrue-js@2.47.0(encoding@0.1.13):
+    resolution: {integrity: sha512-3e34/vsKH/DoSZCpB85UZpFWSJ2p4GRUUlqgAgeTPagPlx4xS+Nc5v7g7ic7vp3gK0J5PsYVCn9Qu2JQUp4vXg==}
     dependencies:
       cross-fetch: 3.1.8(encoding@0.1.13)
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@supabase/postgrest-js@1.7.2(encoding@0.1.13):
-    resolution: {integrity: sha512-GK80JpRq8l6Qll85erICypAfQCied8tdlXfsDN14W844HqXCSOisk8AaE01DAwGJanieaoN5fuqhzA2yKxDvEQ==}
+  /@supabase/node-fetch@2.6.14:
+    resolution: {integrity: sha512-w/Tsd22e/5fAeoxqQ4P2MX6EyF+iM6rc9kmlMVFkHuG0rAltt2TLhFbDJfemnHbtvnazWaRfy5KnFU/SYT37dQ==}
+    engines: {node: 4.x || >=6.0.0}
     dependencies:
-      cross-fetch: 3.1.8(encoding@0.1.13)
-    transitivePeerDependencies:
-      - encoding
+      whatwg-url: 5.0.0
     dev: false
 
-  /@supabase/realtime-js@2.7.3:
-    resolution: {integrity: sha512-c7TzL81sx2kqyxsxcDduJcHL9KJdCOoKimGP6lQSqiZKX42ATlBZpWbyy9KFGFBjAP4nyopMf5JhPi2ZH9jyNw==}
+  /@supabase/postgrest-js@1.8.4:
+    resolution: {integrity: sha512-ELjpvhb04wILUiJz9zIsTSwaz9LQNlX+Ig5/LgXQ7k68qQI6NqHVn+ISRNt53DngUIyOnLHjeqqIRHBZ7zpgGA==}
+    dependencies:
+      '@supabase/node-fetch': 2.6.14
+    dev: false
+
+  /@supabase/realtime-js@2.7.4:
+    resolution: {integrity: sha512-FzSzs1k9ruh/uds5AJ95Nc3beiMCCIhougExJ3O98CX1LMLAKUKFy5FivKLvcNhXnNfUEL0XUfGMb4UH2J7alg==}
     dependencies:
       '@types/phoenix': 1.6.0
       '@types/websocket': 1.0.5
@@ -1311,13 +1319,13 @@ packages:
       - encoding
     dev: false
 
-  /@supabase/supabase-js@2.31.0(encoding@0.1.13):
-    resolution: {integrity: sha512-W9/4s+KnSUX67wJKBn/3yLq+ieycnMzVjK3nNTLX5Wko3ypNT/081l2iFYrf+nsLQ1CiT4mA92I3dxCy6CmxTg==}
+  /@supabase/supabase-js@2.33.1(encoding@0.1.13):
+    resolution: {integrity: sha512-jA00rquPTppPOHpBB6KABW98lfg0gYXcuGqP3TB1iiduznRVsi3GGk2qBKXPDLMYSe0kRlQp5xCwWWthaJr8eA==}
     dependencies:
       '@supabase/functions-js': 2.1.2(encoding@0.1.13)
-      '@supabase/gotrue-js': 2.46.1(encoding@0.1.13)
-      '@supabase/postgrest-js': 1.7.2(encoding@0.1.13)
-      '@supabase/realtime-js': 2.7.3
+      '@supabase/gotrue-js': 2.47.0(encoding@0.1.13)
+      '@supabase/postgrest-js': 1.8.4
+      '@supabase/realtime-js': 2.7.4
       '@supabase/storage-js': 2.5.1(encoding@0.1.13)
       cross-fetch: 3.1.8(encoding@0.1.13)
     transitivePeerDependencies:
