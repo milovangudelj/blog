@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
   const filter = new Filter()
   const cl1_signature = filter.clean(signature) // 1st level cleanup filter
 
-  const response = (await (
+  const response = await(
     await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
       stream: false,
@@ -44,11 +44,11 @@ export async function POST(request: NextRequest) {
       messages: [
         {
           role: 'user',
-          content: `Censor the following message. Use asterisks to censor only profane words. \n\nSignature: "Holy shit that's crazy!"\nCensored Signature: Holy **** tat's crazy!\n\nSignature: "This website looks like 5hiet..."\nCensored Signature: This website looks like *****...\n\nSignature: "${cl1_signature}"\n\nCensored Signature:`,
+          content: `Censor the following message. Use asterisks to censor only profane words. \n\nMessage: "Holy shit that's crazy!"\nCensored: Holy **** that's crazy!\n\nMessage: "${cl1_signature}"\n\nCensored:`,
         },
       ],
     })
-  ).json()) as CreateChatCompletionResponse
+  ).json() as CreateChatCompletionResponse
 
   const cl2_signature = response.choices[0].message?.content // 2nd level cleanup flter
 
