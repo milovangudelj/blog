@@ -11,7 +11,6 @@ const openAIConfig = new Configuration({
 })
 const openai = new OpenAIApi(openAIConfig)
 
-export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 export async function POST(request: NextRequest) {
