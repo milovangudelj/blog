@@ -1,14 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { match as matchLocale } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
-import { Ratelimit } from '@upstash/ratelimit'
-import { kv } from '@vercel/kv'
-
-const ratelimit = new Ratelimit({
-  redis: kv,
-  // 5 requests from the same IP in 10 seconds
-  limiter: Ratelimit.slidingWindow(5, '10 s'),
-})
 
 import { generateSiteMap } from '~lib/sitemap'
 
@@ -34,23 +26,6 @@ function getLocale(request: NextRequest): string | undefined {
 export const middleware = async (request: NextRequest) => {
   const pathname = request.nextUrl.pathname
   const reqHeaders = new Headers(request.headers)
-
-  // Check if the request is to the API
-  if (pathname.startsWith('/api/')) {
-    const ip = request.ip ?? '127.0.0.1'
-    const { success, pending, limit, reset, remaining } = await ratelimit.limit(ip)
-
-    return success
-      ? NextResponse.next()
-      : new NextResponse('Too many requests', {
-          status: 429,
-          headers: {
-            'x-ratelimit-limit': limit.toString(),
-            'x-ratelimit-remaining': remaining.toString(),
-            'x-ratelimit-reset': reset.toString(),
-          },
-        })
-  }
 
   // Generates sitemap.xml if path is /sitemap.xml
   if (request.nextUrl.pathname.localeCompare('/sitemap.xml') === 0) {
@@ -128,5 +103,5 @@ export const middleware = async (request: NextRequest) => {
 
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
-  matcher: ['/((?!studio|auth|robots.txt|_next/static|_next/image|images|fonts).*)'],
+  matcher: ['/((?!api|studio|auth|robots.txt|_next/static|_next/image|images|fonts).*)'],
 }

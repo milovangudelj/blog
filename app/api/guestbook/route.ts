@@ -2,18 +2,23 @@ import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import Filter from 'bad-words'
-import { Configuration, CreateChatCompletionResponse, OpenAIApi } from 'openai-edge'
+import { ClientOptions, OpenAI } from 'openai'
 
 import { Database } from '~/types/supabase'
+import { rateLimitedResponse, ratelimit } from '~/lib/ratelimit'
 
-const openAIConfig = new Configuration({
+const openAIConfig: ClientOptions = {
   apiKey: process.env.OPENAI_API_KEY,
-})
-const openai = new OpenAIApi(openAIConfig)
+}
+const openai = new OpenAI(openAIConfig)
 
 export const dynamic = 'force-dynamic'
 
 export async function POST(request: NextRequest) {
+  const ip = request.ip ?? '127.0.0.1'
+  const { success, pending, limit, reset, remaining } = await ratelimit.limit(ip)
+  if (!success) return rateLimitedResponse({ limit, remaining, reset })
+
   const supabase = createRouteHandlerClient<Database>({ cookies })
   const {
     data: { session },
@@ -36,21 +41,15 @@ export async function POST(request: NextRequest) {
   const filter = new Filter()
   const cl1_signature = filter.clean(signature) // 1st level cleanup filter
 
-  const response = await(
-    await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
-      stream: false,
-      temperature: 0,
-      messages: [
-        {
-          role: 'user',
-          content: `Censor the following message. Use asterisks to censor only profane words. \n\nMessage: "Holy shit that's crazy!"\nCensored: Holy **** that's crazy!\n\nMessage: "${cl1_signature}"\n\nCensored:`,
-        },
-      ],
-    })
-  ).json() as CreateChatCompletionResponse
+  const response = await openai.completions.create({
+    model: 'text-davinci-003',
+    stream: false,
+    temperature: 0,
+    max_tokens: 300,
+    prompt: `Censor the following message. Use asterisks to censor only profane words. \n\nMessage: "Holy shit that's crazy!"\nCensored: Holy **** that's crazy!\n\nMessage: "${cl1_signature}"\n\nCensored:`,
+  })
 
-  const cl2_signature = response.choices[0].message?.content // 2nd level cleanup flter
+  const cl2_signature = response.choices[0].text // 2nd level cleanup flter
 
   const { status, statusText } = await supabase.from('guestbook').insert({
     body: cl2_signature ?? cl1_signature,
@@ -64,6 +63,10 @@ export async function POST(request: NextRequest) {
 }
 
 export async function PATCH(request: NextRequest) {
+  const ip = request.ip ?? '127.0.0.1'
+  const { success, pending, limit, reset, remaining } = await ratelimit.limit(ip)
+  if (!success) return rateLimitedResponse({ limit, remaining, reset })
+
   const supabase = createRouteHandlerClient<Database>({ cookies })
   const {
     data: { session },
