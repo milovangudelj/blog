@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
@@ -15,6 +16,7 @@ type FormData = {
 export function Form({ authenticated }: { authenticated?: boolean }) {
   const router = useRouter()
   const supabase = createClientComponentClient<Database>()
+  const [limitReached, setLimitReached] = useState(false)
 
   const {
     register,
@@ -36,6 +38,12 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
       body: JSON.stringify({
         signature: data.signature,
       }),
+    }).then((res) => {
+      if (res.status === 429) {
+        setLimitReached(true)
+      } else {
+        setLimitReached(false)
+      }
     })
 
     reset()
@@ -95,10 +103,12 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
             Sign out
           </button>
         )}
-        {errors.signature && (
+        {(errors.signature || limitReached) && (
           <>
             {authenticated && <span className="text-light-le">·</span>}
-            <span className="text-tw-red">{errors.signature.message}</span>
+            <span className="text-tw-red">
+              {limitReached ? 'You reached your limit. Slow down...' : errors.signature.message}
+            </span>
           </>
         )}
       </div>
