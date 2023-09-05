@@ -27,7 +27,7 @@ export const postBySlugQuery = groq`
 `
 
 export const postsQuery = groq`
-  *[_type == "post" && (language == $lang || count(*[_type == "translation.metadata" && references(^._id)]) == 0)] | order(_createdAt desc) {
+  *[_type == "post" && (language == $lang || count(*[_type == "translation.metadata" && references(^._id)]) == 0)] | order(publishedAt desc) {
     title,
     "slug": slug.current,
     "cover": {
@@ -53,7 +53,7 @@ export const postsQuery = groq`
 `
 
 export const slimPostsQuery = groq`
-*[_type == "post" && (language == $lang || count(*[_type == "translation.metadata" && references(^._id)]) == 0)] | order(_createdAt desc)[0..2] {
+*[_type == "post" && (language == $lang || count(*[_type == "translation.metadata" && references(^._id)]) == 0)] | order(publishedAt desc)[0..2] {
   title,
   "slug": slug.current,
   "cover": {
@@ -66,5 +66,5 @@ export const slimPostsQuery = groq`
 `
 
 export const postPaths = groq`
-  *[_type == "post" && language == "en" && slug.current != null].slug.current
+  *[_type == "post" && language == "en" && slug.current != null] | order(publishedAt desc).slug.current
 `
