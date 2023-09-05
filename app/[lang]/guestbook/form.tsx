@@ -107,7 +107,7 @@ export function Form({ authenticated }: { authenticated?: boolean }) {
           <>
             {authenticated && <span className="text-light-le">·</span>}
             <span className="text-tw-red">
-              {limitReached ? 'You reached your limit. Slow down...' : errors.signature.message}
+              {limitReached ? 'You reached your limit. Slow down...' : errors.signature?.message}
             </span>
           </>
         )}

@@ -45,9 +45,9 @@ export const middleware = async (request: NextRequest) => {
       : new NextResponse('Too many requests', {
           status: 429,
           headers: {
-            'x-ratelimit-limit': limit,
-            'x-ratelimit-remaining': remaining,
-            'x-ratelimit-reset': reset,
+            'x-ratelimit-limit': limit.toString(),
+            'x-ratelimit-remaining': remaining.toString(),
+            'x-ratelimit-reset': reset.toString(),
           },
         })
   }
